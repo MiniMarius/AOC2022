@@ -24,6 +24,26 @@ with open("input.txt", "r") as file:
             break
 
                     
+print(prioritysum)
+prioritysum = 0
+with open("input.txt", "r") as file:
+    # read the file line by line
+    lines = file.readlines()
 
+    # loop through the lines in groups of 3
+    for i in range(0, len(lines), 3):
+        # get the current group of 3 lines
+        group = lines[i:i+3]
+        group = [line.strip() for line in group]
+        # check if there exists a matching character in all 3 lines
+        # we will use the set intersection operation to find the common characters
+        # in all 3 lines
+        common_chars = set(group[0]) & set(group[1]) & set(group[2])
 
+        # if the set of common characters is not empty, then there exists a
+        # matching character in all 3 lines
+        if common_chars:
+            # print the common characters
+            common_char = common_chars.pop()
+            prioritysum += letterMap.get(common_char)
 print(prioritysum)
